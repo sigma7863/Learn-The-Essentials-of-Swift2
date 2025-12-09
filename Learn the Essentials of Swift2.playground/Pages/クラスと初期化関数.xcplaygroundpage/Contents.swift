@@ -31,17 +31,37 @@ class NamedShape {
 //: `NamedShape` クラスを初期化しましょう。
 let namedShape = NamedShape(name: "my named shape")
 //: `Square` クラス
+// 継承
 class Square: NamedShape {
     var sideLength: Double
     
     init(sideLength: Double, name: String) {
         self.sideLength = sideLength
+        super.init(name: name)
+        numberOfSides = 4
+    }
+    
+    func area() -> Double {
+        return sideLength * sideLength
+    }
+    
+    override func simpleDescription() -> String {
+        return "A square with sides of length \(sideLength)"
     }
 }
-
-
+let testSquare = Square(sideLength: 5.2, name: "my test square")
+testSquare.area()
+testSquare.simpleDescription()
+// 継承をする側のクラスを サブクラス (子クラス)、継承される側のクラスを スーパークラス (親クラス) と言う
+// 今回の例でいえば、Square がサブクラス、NamedShape がスーパークラスとなる
+// overrride(オーバーライド) - サブクラスはスーパークラスのメソッドの実装を上書きできる
+// この例では simpleDescription の中身を書き換えている
+// Square クラスのイニシャライザは以下のような動作をします。
+// 1. Square クラスのプロパティを設定する
+// 2. スーパークラスである NamedShape のイニシャライザを呼ぶ
+// 3. スーパークラスで定義されたプロパティを書き換える
 //: `Circle` クラス
-
+class Square
 
 
 //: `Triangle` クラスと `shapesArray`
